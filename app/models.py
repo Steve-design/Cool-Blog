@@ -70,4 +70,10 @@ class Subscriber(UserMixin, db.Model):
 
    def save_subscriber(self):
        db.session.add(self)
-       db.session.commit()     
+       db.session.commit() 
+
+   
+   @classmethod
+   def get_subscribers(cls,id):
+       return Subscriber.query.all()
+        
