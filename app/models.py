@@ -40,4 +40,14 @@ class Post(db.Model):
     comments = db.relationship('Comment',backref = 'post',lazy = "dynamic")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
-    content = db.Column(db.Text)        
+    content = db.Column(db.Text)    
+
+class Comment(db.Model):
+
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String)
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))        
