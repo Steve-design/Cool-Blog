@@ -17,3 +17,7 @@ class User(UserMixin,db.Model):
     comments = db.relationship('Comment', backref='username', lazy="dynamic")
 
     pass_secure = db.Column(db.String(255))
+
+    @property
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
