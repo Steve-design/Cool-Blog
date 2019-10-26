@@ -36,3 +36,13 @@ def create_app(config_name):
     login_manager.init_app(app)
     mail.init_app(app)
     simple.init_app(app)
+
+    # Registering the blueprint
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
+    # setting config
+    # from .request import configure_request
+    # configure_request(app)
+
+    return app
