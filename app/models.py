@@ -31,3 +31,13 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'{self.username}'    
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50))
+    subtitle = db.Column(db.String(50))
+    comments = db.relationship('Comment',backref = 'post',lazy = "dynamic")
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
+    content = db.Column(db.Text)        
