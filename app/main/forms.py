@@ -14,4 +14,10 @@ class AddPost(FlaskForm):
     title = TextAreaField('Title.')
     subtitle = TextAreaField('Subtitle.')
     content = TextAreaField('Content')
-    submit = SubmitField('Submit')    
+    submit = SubmitField('Submit')   
+
+class SubscriberForm(FlaskForm):
+
+    email = StringField('Your Email Address')
+    name = StringField('Enter your name')
+    submit = SubmitField('Subscribe')     
