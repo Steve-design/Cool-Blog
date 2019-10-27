@@ -32,4 +32,12 @@ def post(post_id):
         db.session.commit()
         return redirect(url_for('main.post_comments', post_id=post.id))
 
-    return render_template('post.html', post=post, form=form, comments=comments)     
+    return render_template('post.html', post=post, form=form, comments=comments)    
+
+@main.route('/post_comments/<int:post_id>' ,methods=['GET', 'POST'])
+def post_comments(post_id):
+
+    post = Post.query.filter_by(id=post_id).one()
+    comments=Comment.get_comments(post_id)
+
+    return render_template('post_comments.html', post=post, comments=comments, post_id=post.id)     
