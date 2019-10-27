@@ -1,4 +1,4 @@
-export SECRET_KEY=surat
+export SECRET_KEY=jabalala
 export MAIL_USERNAME=smzalendo31@gmail.com
 export MAIL_PASSWORD=homosapiens
 
