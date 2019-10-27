@@ -12,3 +12,7 @@ def index():
     posts = Post.query.order_by(Post.date_posted.desc()).all()
 
     return render_template('index.html', posts=posts)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')    
