@@ -119,4 +119,25 @@ def update_profile(uname):
 
         return redirect(url_for('.profile',uname=user.username))
 
-    return render_template('profile/update.html',form =form)                  
+    return render_template('profile/update.html',form =form) 
+
+@main.route('/subscribe', methods=['GET','POST'])
+def subscriber():
+   posts = Post.query.order_by(Post.date_posted.desc()).all()
+   subscriber_form=SubscriberForm()
+
+   if subscriber_form.validate_on_submit():
+
+       subscriber= Subscriber(email=subscriber_form.email.data,name = subscriber_form.name.data)
+
+       db.session.add(subscriber)
+       db.session.commit()
+
+       mail_message("Hello, Welcome To Pinky Steve Blog.","email/welcome_user",subscriber.email,subscriber=subscriber)
+       return redirect(url_for('main.index', posts=posts))
+
+   subscriber = Post.query.all()
+
+   post = Post.query.all()
+
+   return render_template('subscribe.html',subscriber=subscriber,subscriber_form=subscriber_form,post=post)                     
