@@ -49,4 +49,16 @@ def delete_post(post_id):
     post = Post.query.filter_by(id=post_id).one()
     db.session.delete(post)
     db.session.commit()
-    return redirect(url_for('.index', post=post, post_id=post.id))       
+    return redirect(url_for('.index', post=post, post_id=post.id))  
+
+
+@main.route('/comment/delete/<int:post_id>' ,methods=['GET', 'POST'])
+@login_required
+def delete_comment(post_id):
+
+    post = Post.query.filter_by(id=post_id).first()
+    comment = Comment.query.filter_by(post_id=post_id).first()
+
+    db.session.delete(comment)
+    db.session.commit()
+    return redirect(url_for('.post_comments', comment=comment, post=post, post_id=post.id))         
