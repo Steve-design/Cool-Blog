@@ -15,4 +15,21 @@ def index():
 
 @main.route('/about')
 def about():
-    return render_template('about.html')    
+    return render_template('about.html')   
+
+@main.route('/post/<int:post_id>' ,methods=['GET', 'POST'])
+def post(post_id):
+    form = CommentForm()
+    post = Post.query.filter_by(id=post_id).one()
+    comments=Comment.get_comments(post_id)
+
+    if form.validate_on_submit():
+        comment = form.comment.data
+
+        new_comment = Comment(comment=comment, post_id=post_id)
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return redirect(url_for('main.post_comments', post_id=post.id))
+
+    return render_template('post.html', post=post, form=form, comments=comments)     
