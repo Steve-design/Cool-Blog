@@ -19,8 +19,8 @@ class Config:
     def init_app(app):
         pass
 
-class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nancy:steve@localhost/blog_test'  
+# class TestConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nancy:steve@localhost/blog_test'  
 
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nancy:steve@localhost/blog'
@@ -35,6 +35,5 @@ class ProdConfig(Config):
 
 config_options = {
 'development':DevConfig,
-'production':ProdConfig,
-'test':TestConfig
+'production':ProdConfig
 }          
