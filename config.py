@@ -18,3 +18,6 @@ class Config:
     @staticmethod
     def init_app(app):
         pass
+
+class TestConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://nancy:steve@localhost/blog_test'    
