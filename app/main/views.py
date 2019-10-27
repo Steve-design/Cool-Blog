@@ -80,4 +80,13 @@ def add():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('.post',form=form, post_id=post.id))
-    return render_template('add_blog.html', form=form)           
+    return render_template('add_blog.html', form=form) 
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)              
