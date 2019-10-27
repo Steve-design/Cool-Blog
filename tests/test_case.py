@@ -16,3 +16,19 @@ class UserTest(unittest.TestCase):
 
     def test_password_verification(self):
         self.assertTrue(self.new_user.verify_password('mypassword'))
+
+class PostTest(unittest.TestCase):
+    def setUp(self):
+        self.new_post = Post(id=1,
+                             title="title",
+                             subtitle='subtitle',
+                             content="content")
+
+    def tearDown(self):
+        Post.query.delete()
+
+    def test_init(self):
+        self.assertEquals(self.new_post.id, 1)
+        self.assertEquals(self.new_post.title, "title")
+        self.assertEquals(self.new_post.subtitle, "subtitle")
+        self.assertEquals(self.new_post.content, "content")        
