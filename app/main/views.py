@@ -16,7 +16,7 @@ def index():
 
 @main.route('/about')
 def about():
-    return render_template('about.html')   
+    return render_template('about.html',)   
 
 @main.route('/post/<int:post_id>' ,methods=['GET', 'POST'])
 def post(post_id):
@@ -134,7 +134,8 @@ def subscriber():
        db.session.add(subscriber)
        db.session.commit()
 
-       mail_message("Hello {{user.username}}, Welcome To Pinky Steve Blog.","email/welcome_user",subscriber.email,subscriber=subscriber)
+       mail_message("Hello , Welcome To Pinky Steve Blog.","email/welcome_user",subscriber.email,subscriber=subscriber)
+       flash ('Successfully subscribed')
        return redirect(url_for('main.index', posts=posts))
 
    subscriber = Post.query.all()
