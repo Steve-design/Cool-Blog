@@ -84,4 +84,13 @@ class Subscriber(UserMixin, db.Model):
    @login_manager.user_loader
    def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Quote:
+   '''
+   Quote class to define quote Objects
+   '''
+   def __init__(self,id,author,quote):
+       self.id =id
+       self.author = author
+       self.quote = quote    
         
