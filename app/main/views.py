@@ -3,9 +3,10 @@ from . import main
 from .forms import *
 from ..models import *
 from flask_login import login_required, current_user
-from .. import db,photos
+from ..import db,photos
 import markdown2
 from ..email import mail_message
+from ..requests import get_quotes
 
 @main.route('/')
 def index():
